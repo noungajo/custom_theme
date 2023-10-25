@@ -1,46 +1,38 @@
 import 'package:custom_theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class ThemeClass{
   static ThemeData lightTheme = ThemeData(
     useMaterial3:true,
    
-    //---------- light theme elevated button styles
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all( Size(double.infinity, 20.h)),
-        backgroundColor: MaterialStateProperty.resolveWith<Color>((states) => lightElevatedBackgroundColor),
-        shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
-          return RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.w));
-        }),
-        textStyle: MaterialStateProperty.resolveWith((states) =>  TextStyle(fontWeight: FontWeight.normal,fontSize: 11.sp)),
-        foregroundColor: MaterialStateProperty.all<Color>(lightElevatedTextColor),//actual text color
-      )
-    ),
+ 
     //----------------------------------------------------------------------------------
      textTheme:  TextTheme(
       // Personnalisez le style du texte
         titleLarge: TextStyle(
-        fontSize: 18.sp,
         fontWeight: FontWeight.bold,
+        fontFamily: "lato",
         color: lightTextColor,
       ),
       titleMedium: TextStyle(
-        fontSize: 16.sp,
+        fontFamily: "lato",
+  
         color: lightTextColor,
       ),
       bodyLarge: TextStyle(
-        fontSize: 14.sp,
+        fontFamily: "lato",
+        
         color: lightTextColor,
       ),
        bodyMedium: TextStyle(
-        fontSize: 12.sp,
+        fontFamily: "lato",
+       
         color: lightTextColor,
       ),
        bodySmall: TextStyle(
-        fontSize: 11.sp,
+        fontFamily: "lato",
+        
         color: lightTextColor,
       ),
     ),
@@ -50,7 +42,8 @@ class ThemeClass{
       color: lightAppbarColor, 
      
       titleTextStyle:   TextStyle(
-        fontSize: 16.sp,
+        fontFamily: "lato",
+     
         color: lightTextColor,
       ),
     ),
@@ -63,41 +56,30 @@ class ThemeClass{
     static ThemeData darkTheme = ThemeData(
     useMaterial3:true,
    
-    //---------- dark theme elevated button styles
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all( Size(double.infinity, 20.h)),
-        backgroundColor: MaterialStateProperty.resolveWith<Color>((states) => darkElevatedBackgroundColor),
-        shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
-          return RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.w));
-        }),
-        textStyle: MaterialStateProperty.resolveWith((states) =>  TextStyle(fontWeight: FontWeight.normal,fontSize: 11.sp)),
-        foregroundColor: MaterialStateProperty.all<Color>(darkElevatedTextColor),//actual text color
-      )
-    ),
+ 
    //--------------------------------------Text widget--------------------------------------------
      textTheme:  TextTheme(
       // Personnalisez le style du texte
        titleLarge: TextStyle(
-        fontSize: 18.sp,
         fontWeight: FontWeight.bold,
+        fontFamily: "lato",
         color: darkTextColor,
       ),
       titleMedium: TextStyle(
-        fontSize: 16.sp,
         color: darkTextColor,
+        fontFamily: "lato",
       ),
       bodyLarge: TextStyle(
-        fontSize: 14.sp,
         color: darkTextColor,
+        fontFamily: "lato",
       ),
        bodyMedium: TextStyle(
-        fontSize: 12.sp,
         color: darkTextColor,
+        fontFamily: "lato",
       ),
        bodySmall: TextStyle(
-        fontSize: 11.sp,
         color: darkTextColor,
+        fontFamily: "lato",
       ),
     ), 
  // -------------------- appbar theme -----------------------------------------------------
@@ -106,8 +88,8 @@ class ThemeClass{
       color: darkAppbarColor, 
      
       titleTextStyle:   TextStyle(
-        fontSize: 16.sp,
         color: darkTextColor,
+        fontFamily: "lato",
       ),
     ),
     scaffoldBackgroundColor: darkBackgroundColor,
