@@ -1,6 +1,8 @@
 
+import 'package:custom_theme/colors.dart';
+import 'package:custom_theme/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/scheduler.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -14,32 +16,74 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  var isDarkNoContext = false;
+  @override
+  void initState() {
+   var bridhtnessInit = SchedulerBinding.instance.platformDispatcher.platformBrightness;
+   isDarkNoContext = bridhtnessInit == Brightness.dark;
+    super.initState();
+  }
+ bool isDark(BuildContext context){
+  var brightnessContext = MediaQuery.of(context).platformBrightness;
+return brightnessContext ==  Brightness.dark;
+  }
   @override
   Widget build(BuildContext context) {
+    var themedata =false;
+  setState(() {
+    themedata = isDark( context);
+  });
     var theme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title,),
+        title: Text(widget.title,style: theme.titleLarge?.apply(fontSizeDelta: appBarTitle),),
         
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding:  EdgeInsets.all(5.w),
+          padding:  EdgeInsets.all(paddingController),
           child: Column(
             
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
             
-              Text("Je suis le meilleur",style: theme.titleMedium,),
-              Text("Je suis le meilleur",style: theme.bodyLarge,),
-              Text("Je suis le meilleur",style: theme.bodyMedium,),
-              Text("Je suis le meilleur",style: theme.bodySmall,),
-              ElevatedButton(
-              onPressed: (){}, 
-              child: const Text("Je suis le meilleur",)),
-              TextButton(onPressed: (){}, child:  Text("Je suis le meilleur",style: theme.bodySmall,))
-
+              Text("Je suis le meilleur",style: theme.titleMedium?.apply(fontSizeDelta: mediumTitle),),
+              Text("Je suis le meilleur",style: theme.bodyLarge?.apply(fontSizeDelta: bodyLarge)),
+              Text("Je suis le meilleur",style: theme.bodyMedium?.apply(fontSizeDelta: bodyMedium),),
+              Text("Je suis le meilleur",style: theme.bodySmall?.apply(fontSizeDelta: bodySmall),),
+              SizedBox(
+    width: double.infinity,
+                child: ElevatedButton(
+                   style:themedata?
+       ElevatedButton.styleFrom(
+backgroundColor: darkElevatedBackgroundColor,
+      )
+      : ElevatedButton.styleFrom(
+backgroundColor: lightElevatedBackgroundColor,
+      ),
+                onPressed: (){}, 
+                child:  Padding(
+                  padding: EdgeInsets.all(paddingController),
+                  child: Text("Je suis le meilleur",style: theme.bodySmall?.apply(fontSizeDelta: bodySmall),),
+                )),
+              ),
+              TextButton(onPressed: (){}, child:   Text("Je suis le meilleur",style: theme.bodyMedium?.apply(fontSizeDelta: bodyMedium),)),
+   SizedBox(
+    width: double.infinity,
+     child: ElevatedButton(
+      style:themedata?
+       ElevatedButton.styleFrom(
+backgroundColor: darkElevatedBackgroundColor,
+      )
+      : ElevatedButton.styleFrom(
+backgroundColor: lightElevatedBackgroundColor,
+      ),
+                onPressed: (){}, 
+                child:Padding(
+                  padding: EdgeInsets.all(paddingController),
+                  child:   Text("Je suis le meilleur",style: theme.bodySmall?.apply(fontSizeDelta: bodySmall),),
+                )),
+   ),
             ],
           ),
         ),
@@ -47,3 +91,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
